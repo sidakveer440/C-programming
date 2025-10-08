@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int N, original, n = 0;
+    scanf("%d", &N);
+
+    // Handle negative numbers (usually Armstrong numbers are non-negative)
+    if (N < 0) {
+        printf("Not Armstrong\n");
+        return 0;
+    }
+
+    original = N;
+
+    // Step 1: Count the number of digits (n)
+    int temp = N;
+    while (temp > 0) {
+        n++;
+        temp /= 10;
+    }
+
+    // If number is 0, it has 1 digit
+    if (n == 0) n = 1;
+
+    // Step 2: Calculate the sum of digits raised to the power n
+    int sum = 0;
+    temp = N;
+    while (temp > 0) {
+        int digit = temp % 10;
+        sum += (int)pow(digit, n);
+        temp /= 10;
+    }
+
+    // Step 3: Compare sum with original number
+    if (sum == original)
+        printf("Armstrong\n");
+    else
+        printf("Not Armstrong\n");
+
+    return 0;
+}
